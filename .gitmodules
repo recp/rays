@@ -1,0 +1,9 @@
+[submodule "deps/cglm"]
+	path = deps/cglm
+	url=https://github.com/recp/cglm.git
+[submodule "deps/assetkit"]
+	path = deps/assetkit
+	url = https://github.com/recp/AssetKit.git
+[submodule "deps/im"]
+	path = deps/im
+	url = https://github.com/recp/im.git
