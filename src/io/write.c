@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-#ifndef src_common_h
-#define src_common_h
+#include "../common.h"
+#include "write.h"
 
-#include "../include/common.h"
-#include <stdlib.h>
-#include <stdio.h>
-
-#include <cglm/cglm.h>
-
-#endif /* src_common_h */
+RAYS_EXPORT
+void
+rays_write_v3(FILE * __restrict file, vec3 color) {
+  fprintf(file, "%d %d %d\n",
+          (int)(255.999 * color[0]),
+          (int)(255.999 * color[1]),
+          (int)(255.999 * color[2]));
+}
