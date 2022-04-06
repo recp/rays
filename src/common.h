@@ -17,7 +17,7 @@
 #ifndef src_common_h
 #define src_common_h
 
-#include "../include/common.h"
+#include "../include/rays/common.h"
 #include <stdlib.h>
 #include <stdio.h>
 

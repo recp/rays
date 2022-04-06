@@ -18,9 +18,14 @@
 #define rays_assets_h
 
 #include "common.h"
+#include <cglm/cglm.h>
 
 RAYS_EXPORT
 void
 rays_import(const char * __restrict path);
+
+RAYS_EXPORT
+void
+rays_write_v3(FILE * __restrict file, vec3 color);;
 
 #endif /* rays_assets_h */
