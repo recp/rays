@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Recep Aslantas
+ * Copyright (C) 2020 Recep Aslantas
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,21 @@
  * limitations under the License.
  */
 
+#ifndef mem_mmap_h
+#define mem_mmap_h
+
 #include "../common.h"
 
-#ifndef src_write_h
-#define src_write_h
+RAYS_HIDE
+void*
+rays_mmap_rdonly(int fd, size_t size);
 
-RAYS_EXPORT
+RAYS_HIDE
+void*
+rays_mmap(int fd, size_t size);
+
+RAYS_HIDE
 void
-rays_writef_v3(FILE * __restrict file, vec3 color);
+rays_unmap(void *file, size_t size);
 
-RAYS_EXPORT
-void
-rays_write_v3(uint8_t * __restrict * __restrict file, vec3 color);
-
-#endif /* src_write_h */
+#endif /* mem_mmap_h */

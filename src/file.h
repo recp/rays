@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Recep Aslantas
+ * Copyright (C) 2020 Recep Aslantas
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,13 @@
  * limitations under the License.
  */
 
-#include "../common.h"
+#ifndef rays_src_file_h
+#define rays_src_file_h
 
-#ifndef src_write_h
-#define src_write_h
+#include "common.h"
 
-RAYS_EXPORT
-void
-rays_writef_v3(FILE * __restrict file, vec3 color);
+RAYS_HIDE
+size_t
+rays_fsize(int fno);
 
-RAYS_EXPORT
-void
-rays_write_v3(uint8_t * __restrict * __restrict file, vec3 color);
-
-#endif /* src_write_h */
+#endif /* rays_src_file_h */
