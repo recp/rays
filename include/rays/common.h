@@ -16,6 +16,9 @@
 
 #ifndef rays_common_h
 #define rays_common_h
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #ifndef _USE_MATH_DEFINES
 #  define _USE_MATH_DEFINES       /* for windows */
@@ -25,13 +28,29 @@
 #  define _CRT_SECURE_NO_WARNINGS /* for windows */
 #endif
 
+#ifndef _CRT_NONSTDC_NO_DEPRECATE
+#  define _CRT_NONSTDC_NO_DEPRECATE /* for windows */
+#endif
+
+/* since C99 or compiler ext */
 #include <stdint.h>
 #include <stddef.h>
-#include <math.h>
 #include <float.h>
 #include <stdbool.h>
+#include <errno.h>
+#include <stdlib.h>
 
-#if defined(_MSC_VER)
+#ifdef DEBUG
+#  include <assert.h>
+#  include <stdio.h>
+#endif
+
+#if defined(_MSC_VER) || defined(__MINGW32__) || defined(__MINGW64__)
+#  define RAYS_WINAPI
+#  pragma warning (disable : 4068) /* disable unknown pragma warnings */
+#endif
+
+#if defined(_MSC_VER) || defined(__MINGW32__) || defined(__MINGW64__)
 #  ifdef RAYS_STATIC
 #    define RAYS_EXPORT
 #  elif defined(RAYS_EXPORTS)
@@ -39,10 +58,35 @@
 #  else
 #    define RAYS_EXPORT __declspec(dllimport)
 #  endif
-#  define RAYS_INLINE __forceinline
+#  define RAYS_HIDE
 #else
-#  define RAYS_EXPORT __attribute__((visibility("default")))
-#  define RAYS_INLINE static inline __attribute((always_inline))
+#  define RAYS_EXPORT   __attribute__((visibility("default")))
+#  define RAYS_HIDE     __attribute__((visibility("hidden")))
 #endif
 
+#if defined(_MSC_VER)
+#  define RAYS_INLINE   __forceinline
+#  define RAYS_ALIGN(X) __declspec(align(X))
+#else
+#  define RAYS_ALIGN(X) __attribute((aligned(X)))
+#  define RAYS_INLINE   static inline __attribute((always_inline))
+#endif
+
+#ifndef __has_builtin
+#  define __has_builtin(x) 0
+#endif
+
+typedef enum RaysResult {
+  RAYS_NOOP     =  1,     /* no operation needed */
+  RAYS_OK       =  0,
+  RAYS_ERR      = -1,     /* UKNOWN ERR */
+  RAYS_EFOUND   = -1000,
+  RAYS_ENOMEM   = -ENOMEM,
+  RAYS_EPERM    = -EPERM,
+  RAYS_EBADF    = -EBADF  /* file couldn't parsed / loaded */
+} RaysResult;
+
+#ifdef __cplusplus
+}
+#endif
 #endif /* rays_common_h */
