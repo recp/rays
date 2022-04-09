@@ -1,0 +1,5 @@
+module rays {
+    header "rays/rays.h"
+    
+    export *
+}
