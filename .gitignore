@@ -76,3 +76,7 @@ build/
 conftest.dir/*
 confdefs.h
 *.xcuserdatad
+
+
+raysui*/
+rays-test*
