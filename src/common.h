@@ -19,6 +19,7 @@
 
 #include "../include/rays/common.h"
 #include "../include/rays/assets.h"
+#include "../include/rays/rays.h"
 #include <stdlib.h>
 #include <stdio.h>
 

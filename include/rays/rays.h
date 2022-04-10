@@ -18,6 +18,25 @@
 #define rays_rays_h
 
 #include "common.h"
+#include "assets.h"
+
+typedef struct ray_t {
+  vec3  pos; /* origin                                        */
+  vec3  dir; /* direction (normalized)                        */
+  float min; /* distance at which intersection testing starts */
+  float max; /* distance at which intersection testing ends   */
+} ray_t;
+
+/*
+ ray function 𝐏(𝑡)=𝐀+𝑡𝐛
+ */
+RAYS_INLINE
+void
+rays_ray_at(ray_t * __restrict ray, float t, vec3 point) {
+  vec3 dst;
+  glm_vec3_scale(ray->dir, t, dst);
+  glm_vec3_add(ray->pos, dst, point);
+}
 
 RAYS_EXPORT
 void

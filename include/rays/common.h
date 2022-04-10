@@ -45,6 +45,9 @@ extern "C" {
 #  include <stdio.h>
 #endif
 
+/* core deps */
+#include <cglm/cglm.h>
+
 #if defined(_MSC_VER) || defined(__MINGW32__) || defined(__MINGW64__)
 #  define RAYS_WINAPI
 #  pragma warning (disable : 4068) /* disable unknown pragma warnings */
